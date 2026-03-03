@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio N — фильмы, игры, приложения</title>
+    <style>
+        /* Стиль в стиле "цифровой минимализм" — отсылка к интерфейсам приложений студии */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0c0f;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #e3e6ea;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* 🔮 АНИМАЦИИ И ДЕКОР */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 10px rgba(79, 158, 255, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(79, 158, 255, 0.7); }
+            100% { box-shadow: 0 0 10px rgba(79, 158, 255, 0.3); }
+        }
+
+        @keyframes borderGlow {
+            0% { border-color: #2c313a; }
+            50% { border-color: #4f9eff; }
+            100% { border-color: #2c313a; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Фон с эффектом звёзд */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1a2f3f 0%, #0a0c0f 70%);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="20" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="60" r="1.5" fill="white" opacity="0.4"/><circle cx="30" cy="85" r="0.8" fill="white" opacity="0.2"/><circle cx="70" cy="15" r="1.2" fill="white" opacity="0.3"/><circle cx="50" cy="45" r="1" fill="white" opacity="0.5"/></svg>');
+            background-size: 200px 200px;
+            opacity: 0.5;
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* шапка */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #2a2e35;
+            padding-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4f9eff, transparent);
+            animation: borderGlow 3s infinite;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b3b9ff, #a0e9ff, #c0a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite, float 6s ease-in-out infinite;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(160, 233, 255, 0.3);
+        }
+
+        .studio-desc {
+            font-size: 1.2rem;
+            color: #9aa4b3;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* карточки проектов */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
+            color: #ffffff;
+            border-left: 4px solid #4f9eff;
+            padding-left: 1rem;
+            animation: fadeInUp 0.6s ease-out;
+            text-shadow: 0 0 10px rgba(79, 158, 255, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: rgba(20, 24, 30, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid #2c313a;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.15s; }
+        .project-card:nth-child(3) { animation-delay: 0.2s; }
+        .project-card:nth-child(4) { animation-delay: 0.25s; }
+        .project-card:nth-child(5) { animation-delay: 0.3s; }
+        .project-card:nth-child(6) { animation-delay: 0.35s; }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4f9eff, #a0e9ff, #b3b9ff, #4f9eff);
+            background-size: 300% 300%;
+            border-radius: 22px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: transparent;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.4;
+        }
+
+        .project-card:hover .project-icon {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .project-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .project-name {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+            transition: text-shadow 0.3s;
+        }
+
+        .project-card:hover .project-name {
+            text-shadow: 0 0 12px rgba(79, 158, 255, 0.6);
+        }
+
+        .project-desc {
+            color: #9aa9b9;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #7b8a9b;
+            border-top: 1px dashed #2a2e35;
+            padding-top: 1rem;
+        }
+
+        .badge {
+            background: #1f2a36;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            color: #b9d0f0;
+            font-weight: 500;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover .badge {
+            background: #2a3a4a;
+            color: #ffffff;
+        }
+
+        .badge-p2p {
+            background: #1a3a4a;
+            color: #8ed6ff;
+        }
+
+        .in-dev {
+            opacity: 0.9;
+            background: rgba(42, 36, 32, 0.8);
+            border: 1px dashed #6b5a4c;
+        }
+
+        .in-dev .badge {
+            background: #443e38;
+            color: #f0c9a0;
+        }
+
+        .footer {
+            margin-top: 5rem;
+            text-align: center;
+            border-top: 1px solid #2a2e35;
+            padding-top: 2.5rem;
+            color: #7a8595;
+            font-size: 0.95rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .footer a {
+            color: #b0cbff;
+            text-decoration: none;
+            border-bottom: 1px dotted #4a5e7a;
+            transition: all 0.2s;
+        }
+
+        .footer a:hover {
+            color: white;
+            border-bottom-color: #4f9eff;
+            text-shadow: 0 0 8px rgba(79, 158, 255, 0.5);
+        }
+
+        .profile-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(30, 36, 44, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #e0e7ff;
+            border: 1px solid #2f3a48;
+            transition: all 0.3s;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-link:hover {
+            background: #2a3340;
+            border-color: #4f9eff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(79, 158, 255, 0.4);
+            animation: glowPulse 2s infinite;
+        }
+
+        .profile-link:first-child { animation-delay: 0s; }
+        .profile-link:last-child { animation-delay: 0.5s; }
+
+        /* мастер — с фокусом на тебя */
+        .master-section {
+            background: rgba(27, 33, 41, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 2.2rem;
+            margin: 3rem 0;
+            border: 2px solid #4f9eff;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out, glowPulse 3s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .master-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79,158,255,0.15) 0%, transparent 70%);
+            animation: gradientShift 10s infinite;
+            z-index: -1;
+        }
+
+        .master-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4f9eff, #a0e9ff, #4f9eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        .master-desc {
+            color: #ffffff;
+            max-width: 600px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .master-role {
+            display: inline-block;
+            background: #2c5282;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: #2c5282;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 1rem;
+            vertical-align: middle;
+            animation: glowPulse 3s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка студии 2026 -->
+        <div class="header">
+            <div class="logo">Studio N <span class="year-badge">2026</span></div>
+            <p class="studio-desc">
+                🎬 Один человек — две роли<br>
+                <span style="font-size: 1rem; color: #b0c4de;">(съёмочная команда формируется под проект / разработка — соло)</span>
+            </p>
+            
+            <!-- ССЫЛКИ НА ПРОФИЛИ В ШАПКЕ -->
+            <div class="profile-links">
+                <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="profile-link">
+                    <span>⎔</span> Itch.io профиль
+                </a>
+                <a href="https://rutube.ru/channel/60173158" target="_blank" rel="noopener" class="profile-link">
+                    <span>🎬</span> RUTUBE (сериалы)
+                </a>
+            </div>
+        </div>
+
+        <!-- Существующие проекты (ТЕПЕРЬ 4 ПРОЕКТА) -->
+        <h2 class="section-title">🎯 Актуальные проекты</h2>
+        <div class="projects-grid">
+            <!-- 1. FulloChat v2 -->
+            <a href="https://studion2025.github.io/fullo-chat/" target="_blank" rel="noopener" class="project-card">
+                <div class="project-icon">📹</div>
+                <div class="project-name">FulloChat v2.0</div>
+                <div class="project-desc">P2P аудио/видео чат со сквозным шифрованием (E2EE). Полностью децентрализован. Разработано для кружка информатики.</div>
+                <div class="project-meta">
+                    <span class="badge badge-p2p">🔒 E2EE</span>
+                    <span class="badge">WebRTC</span>
+                    <span class="badge">без серверов</span>
+                </div>
+                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#9eb7d0;">🛡️ безопасный обмен, макс. 30 символов</div>
+            </a>
+
+            <!-- 2. FreeTube - НОВЫЙ ПРОЕКТ -->
+            <a href="https://studion2025.github.io/FreeTube/" target="_blank" rel="noopener" class="project-card">
+                <div class="project-icon">🎬</div>
+                <div class="project-name">FreeTube</div>
+                <div class="project-desc">Свободная видео-платформа. Загружай, смотри, ищи. Простой и открытый видеохостинг.</div>
+                <div class="project-meta">
+                    <span class="badge">видео</span>
+                    <span class="badge">🔥 новинка</span>
+                    <span class="badge">открытый</span>
+                </div>
+                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#9eb7d0;">📺 загрузка, просмотр, категории</div>
+            </a>
+
+            <!-- 3. Кодировщик base64 -->
+            <a href="https://studion2025.github.io/video-and-photo-codet-to-base64/" target="_blank" rel="noopener" class="project-card">
+                <div class="project-icon">🔢</div>
+                <div class="project-name">Base64 кодировщик</div>
+                <div class="project-desc">Конвертер видео и фото в Base64 для разработчиков. Быстрое кодирование.</div>
+                <div class="project-meta">
+                    <span class="badge">инструмент</span>
+                    <span class="badge">🔧 dev</span>
+                </div>
+            </a>
+
+            <!-- 4. Ссылка на itch.io -->
+            <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="project-card" style="background: rgba(16, 22, 28, 0.8);">
+                <div class="project-icon">📦</div>
+                <div class="project-name">Все проекты на itch</div>
+                <div class="project-desc">Страница Studio N на Itch.io. Следите за обновлениями и новыми релизами.</div>
+                <div class="project-meta">
+                    <span class="badge">itch.io</span>
+                    <span class="badge">сообщество</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Проекты в разработке 2026-2027 -->
+        <h2 class="section-title">⚙️ В разработке <span style="font-size: 1.2rem; color: #8ed6ff;">2026–2027</span></h2>
+        <div class="projects-grid">
+            <!-- Мессенджер -->
+            <div class="project-card in-dev" style="cursor: default;">
+                <div class="project-icon">💬</div>
+                <div class="project-name">Мессенджер Studio N</div>
+                <div class="project-desc">Защищённый P2P-мессенджер с шифрованием. Без центральных серверов, только приватность.</div>
+                <div class="project-meta">
+                    <span class="badge">🔐 E2EE</span>
+                    <span class="badge">P2P</span>
+                    <span class="badge">🧪 dev</span>
+                </div>
+                <div style="color: #bc9b7a; margin-top: 0.3rem;">⏳ релиз: 2026–2027</div>
+            </div>
+
+            <!-- Браузер -->
+            <div class="project-card in-dev" style="cursor: default;">
+                <div class="project-icon">🌐</div>
+                <div class="project-name">Браузер N</div>
+                <div class="project-desc">Минималистичный браузер с интеграцией P2P-сервисов и встроенными инструментами разработчика.</div>
+                <div class="project-meta">
+                    <span class="badge">⚡ быстрый</span>
+                    <span class="badge">🧪 early stage</span>
+                </div>
+                <div style="color: #bc9b7a; margin-top: 0.3rem;">⏳ прототип: 2026</div>
+            </div>
+
+            <!-- Игры и фильмы -->
+            <div class="project-card in-dev" style="cursor: default; background: rgba(19, 22, 28, 0.8);">
+                <div class="project-icon">🎮🎬</div>
+                <div class="project-name">Игры и фильмы</div>
+                <div class="project-desc">Экспериментальные игровые проекты и короткометражные фильмы студии.</div>
+                <div class="project-meta">
+                    <span class="badge">геймдев</span>
+                    <span class="badge">кинопроизводство</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК ПРО ТЕБЯ -->
+        <div class="master-section">
+            <div>
+                <div class="master-title">Один человек</div>
+                <div class="master-desc" style="margin-top: 0.5rem;">
+                    <span class="master-role">🎬 главный</span>
+                    <span class="master-role">📝 сценарист</span>
+                    <span class="master-role">✂️ монтажёр</span>
+                    <span class="master-role">💻 разработчик</span>
+                    <span class="master-role">🎨 аниматор</span>
+                </div>
+                <div class="master-desc" style="margin-top: 1rem;">
+                    Я собираю съёмочную команду под каждый проект — выбираю людей, которые нужны именно сейчас.<br>
+                    А в разработке и анимации я — единственный участник.
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 2rem; color: #fff; animation: float 5s infinite;">🎥 + 👨‍💻</div>
+                <div style="color: #b0c4de;">две команды, один создатель:</div>
+                <div style="color: #d7bde2;">— съёмочная (я + приглашённые)</div>
+                <div style="color: #a3d0b0;">— разработка (только я)</div>
+            </div>
+        </div>
+
+        <!-- О студии -->
+        <div style="background: rgba(16, 22, 30, 0.8); backdrop-filter: blur(5px); border-radius: 30px; padding: 2rem; margin-top: 2rem; border: 1px solid #27303d; animation: fadeInUp 1.2s ease-out;">
+            <h3 style="font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; color: #fff;">Как устроена Studio N</h3>
+            <p style="color: #b0c0d0; max-width: 700px;">
+                <strong>Всё держится на одном человеке.</strong> Я сам выбираю людей для съёмочной группы под каждый проект — они меняются в 
