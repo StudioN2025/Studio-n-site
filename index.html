@@ -6,6 +6,11 @@
     <meta name="description" content="Studio N — разработка P2P-приложений, видео-платформ, игр и фильмов. Студия одного человека, создающего уникальные цифровые продукты.">
     <meta name="author" content="Studio N">
     <title>Studio N — фильмы, игры, приложения</title>
+    
+    <!-- FAVICON - иконка вкладки браузера -->
+    <link rel="icon" type="image/png" href="studionicon.png">
+    <link rel="apple-touch-icon" href="studionicon.png">
+    
     <style>
         /* Стиль в стиле "цифровой минимализм" — отсылка к интерфейсам приложений студии */
         * {
@@ -61,6 +66,11 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* Фон с эффектом звёзд */
@@ -140,6 +150,31 @@
             animation: borderGlow 3s infinite;
         }
 
+        /* Блок с логотипом и иконкой */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .studio-icon {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 20px;
+            animation: float 6s ease-in-out infinite, glowPulse 4s infinite;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 0 10px rgba(79, 158, 255, 0.5));
+        }
+
+        .studio-icon:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px rgba(79, 158, 255, 0.8));
+        }
+
         .logo {
             font-size: 3.5rem;
             font-weight: 700;
@@ -151,7 +186,6 @@
             background-size: 200% 200%;
             animation: gradientShift 8s ease infinite, float 6s ease-in-out infinite;
             display: inline-block;
-            margin-bottom: 0.5rem;
             text-shadow: 0 0 20px rgba(160, 233, 255, 0.3);
         }
 
@@ -614,6 +648,15 @@
                 font-size: 2.5rem;
             }
             
+            .studio-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-wrapper {
+                gap: 0.5rem;
+            }
+            
             .section-title {
                 font-size: 1.5rem;
             }
@@ -664,9 +707,12 @@
             <a href="#contact">Контакты</a>
         </div>
 
-        <!-- Шапка студии 2026 -->
+        <!-- Шапка студии 2026 с иконкой -->
         <div class="header" id="top">
-            <div class="logo">Studio N <span class="year-badge">2026</span></div>
+            <div class="logo-wrapper">
+                <img src="studionicon.png" alt="Studio N Icon" class="studio-icon" onerror="this.style.display='none'">
+                <div class="logo">Studio N <span class="year-badge">2026</span></div>
+            </div>
             <p class="studio-desc">
                 🎬 Один человек — две роли<br>
                 <span style="font-size: 1rem; color: #b0c4de;">(съёмочная команда формируется под проект / разработка — соло)</span>
