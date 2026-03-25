@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Studio N — разработка P2P-приложений, видео-платформ, игр и фильмов. Студия одного человека, создающего уникальные цифровые продукты.">
+    <meta name="author" content="Studio N">
     <title>Studio N — фильмы, игры, приложения</title>
     <style>
         /* Стиль в стиле "цифровой минимализм" — отсылка к интерфейсам приложений студии */
@@ -48,12 +50,17 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Фон с эффектом звёзд */
@@ -75,7 +82,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="20" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="60" r="1.5" fill="white" opacity="0.4"/><circle cx="30" cy="85" r="0.8" fill="white" opacity="0.2"/><circle cx="70" cy="15" r="1.2" fill="white" opacity="0.3"/><circle cx="50" cy="45" r="1" fill="white" opacity="0.5"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="20" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="60" r="1.5" fill="white" opacity="0.4"/><circle cx="30" cy="85" r="0.8" fill="white" opacity="0.2"/><circle cx="70" cy="15" r="1.2" fill="white" opacity="0.3"/><circle cx="50" cy="45" r="1" fill="white" opacity="0.5"/><circle cx="15" cy="75" r="0.6" fill="white" opacity="0.2"/><circle cx="85" cy="35" r="1" fill="white" opacity="0.3"/></svg>');
             background-size: 200px 200px;
             opacity: 0.5;
             z-index: -1;
@@ -86,7 +93,30 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
-            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Навигация */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .nav a {
+            color: #9aa4b3;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav a:hover {
+            color: #4f9eff;
+            border-bottom-color: #4f9eff;
         }
 
         /* шапка */
@@ -166,6 +196,7 @@
             animation-fill-mode: both;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .project-card:nth-child(1) { animation-delay: 0.1s; }
@@ -216,6 +247,11 @@
             margin-bottom: 0.75rem;
             color: #ffffff;
             transition: text-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .project-card:hover .project-name {
@@ -263,10 +299,21 @@
             color: #8ed6ff;
         }
 
+        .badge-temporary {
+            background: #8b5a2b;
+            color: #ffd966;
+        }
+
+        .badge-offline {
+            background: #6b2e2e;
+            color: #ff9999;
+        }
+
         .in-dev {
             opacity: 0.9;
             background: rgba(42, 36, 32, 0.8);
             border: 1px dashed #6b5a4c;
+            cursor: default;
         }
 
         .in-dev .badge {
@@ -274,64 +321,19 @@
             color: #f0c9a0;
         }
 
-        .footer {
-            margin-top: 5rem;
-            text-align: center;
-            border-top: 1px solid #2a2e35;
-            padding-top: 2.5rem;
-            color: #7a8595;
-            font-size: 0.95rem;
-            animation: fadeInUp 1s ease-out;
+        .temporarily-offline {
+            opacity: 0.85;
+            background: rgba(30, 25, 35, 0.8);
+            border: 1px solid #8b5a2b;
+            cursor: pointer;
         }
 
-        .footer a {
-            color: #b0cbff;
-            text-decoration: none;
-            border-bottom: 1px dotted #4a5e7a;
-            transition: all 0.2s;
+        .temporarily-offline .badge {
+            background: #8b5a2b;
+            color: #ffd966;
         }
 
-        .footer a:hover {
-            color: white;
-            border-bottom-color: #4f9eff;
-            text-shadow: 0 0 8px rgba(79, 158, 255, 0.5);
-        }
-
-        .profile-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .profile-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(30, 36, 44, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 0.6rem 1.4rem;
-            border-radius: 40px;
-            text-decoration: none;
-            color: #e0e7ff;
-            border: 1px solid #2f3a48;
-            transition: all 0.3s;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .profile-link:hover {
-            background: #2a3340;
-            border-color: #4f9eff;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(79, 158, 255, 0.4);
-            animation: glowPulse 2s infinite;
-        }
-
-        .profile-link:first-child { animation-delay: 0s; }
-        .profile-link:last-child { animation-delay: 0.5s; }
-
-        /* мастер — с фокусом на тебя */
+        /* мастер-секция */
         .master-section {
             background: rgba(27, 33, 41, 0.8);
             backdrop-filter: blur(5px);
@@ -400,12 +402,270 @@
             vertical-align: middle;
             animation: glowPulse 3s infinite;
         }
+
+        /* Контактная секция */
+        .contact-section {
+            background: rgba(16, 22, 30, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid #27303d;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .contact-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .contact-text {
+            color: #b0c0d0;
+            flex: 1;
+        }
+
+        .contact-email {
+            background: rgba(79, 158, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #4f9eff;
+            display: inline-block;
+        }
+
+        .contact-email a {
+            color: #4f9eff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .contact-email a:hover {
+            text-shadow: 0 0 10px rgba(79, 158, 255, 0.5);
+        }
+
+        /* Каналы */
+        .channels-section {
+            background: rgba(16, 22, 30, 0.6);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .channels-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #b0c4de;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .channel-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .channel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(30, 36, 44, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #e0e7ff;
+            border: 1px solid #2f3a48;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .channel-link:hover {
+            background: #2a3340;
+            border-color: #4f9eff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(79, 158, 255, 0.4);
+        }
+
+        .channel-link.telegram:hover {
+            border-color: #26A5E4;
+            box-shadow: 0 0 20px rgba(38, 165, 228, 0.4);
+        }
+
+        .channel-link.rutube:hover {
+            border-color: #FF5E5E;
+            box-shadow: 0 0 20px rgba(255, 94, 94, 0.4);
+        }
+
+        .channel-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 5rem;
+            text-align: center;
+            border-top: 1px solid #2a2e35;
+            padding-top: 2.5rem;
+            color: #7a8595;
+            font-size: 0.95rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .footer a {
+            color: #b0cbff;
+            text-decoration: none;
+            border-bottom: 1px dotted #4a5e7a;
+            transition: all 0.2s;
+        }
+
+        .footer a:hover {
+            color: white;
+            border-bottom-color: #4f9eff;
+            text-shadow: 0 0 8px rgba(79, 158, 255, 0.5);
+        }
+
+        .profile-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(30, 36, 44, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #e0e7ff;
+            border: 1px solid #2f3a48;
+            transition: all 0.3s;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-link:hover {
+            background: #2a3340;
+            border-color: #4f9eff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(79, 158, 255, 0.4);
+            animation: glowPulse 2s infinite;
+        }
+
+        .profile-link:first-child { animation-delay: 0s; }
+        .profile-link:last-child { animation-delay: 0.5s; }
+
+        /* Кнопка наверх */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #4f9eff;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1.5rem;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(79, 158, 255, 0.5);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+            background: #6badff;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .master-title {
+                font-size: 1.8rem;
+            }
+            
+            .master-desc {
+                font-size: 1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-link {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+            }
+            
+            .channel-links {
+                flex-direction: column;
+            }
+            
+            .channel-link {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Навигация -->
+        <div class="nav">
+            <a href="#projects">Проекты</a>
+            <a href="#development">В разработке</a>
+            <a href="#about">О студии</a>
+            <a href="#contact">Контакты</a>
+        </div>
+
         <!-- Шапка студии 2026 -->
-        <div class="header">
+        <div class="header" id="top">
             <div class="logo">Studio N <span class="year-badge">2026</span></div>
             <p class="studio-desc">
                 🎬 Один человек — две роли<br>
@@ -417,42 +677,48 @@
                 <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="profile-link">
                     <span>⎔</span> Itch.io профиль
                 </a>
-                <a href="https://rutube.ru/channel/60173158" target="_blank" rel="noopener" class="profile-link">
+                <a href="https://rutube.ru/channel/60173158/" target="_blank" rel="noopener" class="profile-link">
                     <span>🎬</span> RUTUBE (сериалы)
                 </a>
             </div>
         </div>
 
-        <!-- Существующие проекты (ТЕПЕРЬ 4 ПРОЕКТА) -->
-        <h2 class="section-title">🎯 Актуальные проекты</h2>
+        <!-- Существующие проекты -->
+        <h2 class="section-title" id="projects">🎯 Актуальные проекты</h2>
         <div class="projects-grid">
-            <!-- 1. FulloChat v2 -->
-            <a href="https://studion2025.github.io/fullo-chat/" target="_blank" rel="noopener" class="project-card">
+            <!-- 1. FulloChat v2 - ВРЕМЕННО НЕ РАБОТАЕТ -->
+            <a href="https://studion2025.github.io/fullo-chat/" target="_blank" rel="noopener" class="project-card temporarily-offline">
                 <div class="project-icon">📹</div>
-                <div class="project-name">FulloChat v2.0</div>
+                <div class="project-name">
+                    FulloChat v2.0
+                    <span class="badge badge-temporary" style="background: #8b5a2b; font-size: 0.7rem;">⚠️ временно</span>
+                </div>
                 <div class="project-desc">P2P аудио/видео чат со сквозным шифрованием (E2EE). Полностью децентрализован. Разработано для кружка информатики.</div>
                 <div class="project-meta">
                     <span class="badge badge-p2p">🔒 E2EE</span>
                     <span class="badge">WebRTC</span>
-                    <span class="badge">без серверов</span>
+                    <span class="badge badge-temporary">⏳ скоро вернётся</span>
                 </div>
-                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#9eb7d0;">🛡️ безопасный обмен, макс. 30 символов</div>
+                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#ffb347;">⚠️ Временно недоступен — ведутся технические работы</div>
             </a>
 
-            <!-- 2. FreeTube - НОВЫЙ ПРОЕКТ -->
-            <a href="https://studion2025.github.io/FreeTube/" target="_blank" rel="noopener" class="project-card">
+            <!-- 2. FreeTube - ВРЕМЕННО НЕ РАБОТАЕТ -->
+            <a href="https://studion2025.github.io/FreeTube/" target="_blank" rel="noopener" class="project-card temporarily-offline">
                 <div class="project-icon">🎬</div>
-                <div class="project-name">FreeTube</div>
+                <div class="project-name">
+                    FreeTube
+                    <span class="badge badge-temporary" style="background: #8b5a2b; font-size: 0.7rem;">⚠️ временно</span>
+                </div>
                 <div class="project-desc">Свободная видео-платформа. Загружай, смотри, ищи. Простой и открытый видеохостинг.</div>
                 <div class="project-meta">
                     <span class="badge">видео</span>
-                    <span class="badge">🔥 новинка</span>
+                    <span class="badge badge-temporary">🔧 обновление</span>
                     <span class="badge">открытый</span>
                 </div>
-                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#9eb7d0;">📺 загрузка, просмотр, категории</div>
+                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#ffb347;">⚠️ Временно недоступен — идёт техническое обновление</div>
             </a>
 
-            <!-- 3. Кодировщик base64 -->
+            <!-- 3. Кодировщик base64 - РАБОТАЕТ -->
             <a href="https://studion2025.github.io/video-and-photo-codet-to-base64/" target="_blank" rel="noopener" class="project-card">
                 <div class="project-icon">🔢</div>
                 <div class="project-name">Base64 кодировщик</div>
@@ -460,26 +726,28 @@
                 <div class="project-meta">
                     <span class="badge">инструмент</span>
                     <span class="badge">🔧 dev</span>
+                    <span class="badge" style="background: #2a6b3a;">✅ работает</span>
                 </div>
             </a>
 
-            <!-- 4. Ссылка на itch.io -->
-            <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="project-card" style="background: rgba(16, 22, 28, 0.8);">
+            <!-- 4. Ссылка на itch.io - РАБОТАЕТ -->
+            <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="project-card">
                 <div class="project-icon">📦</div>
                 <div class="project-name">Все проекты на itch</div>
                 <div class="project-desc">Страница Studio N на Itch.io. Следите за обновлениями и новыми релизами.</div>
                 <div class="project-meta">
                     <span class="badge">itch.io</span>
                     <span class="badge">сообщество</span>
+                    <span class="badge" style="background: #2a6b3a;">✅ работает</span>
                 </div>
             </a>
         </div>
 
         <!-- Проекты в разработке 2026-2027 -->
-        <h2 class="section-title">⚙️ В разработке <span style="font-size: 1.2rem; color: #8ed6ff;">2026–2027</span></h2>
+        <h2 class="section-title" id="development">⚙️ В разработке <span style="font-size: 1.2rem; color: #8ed6ff;">2026–2027</span></h2>
         <div class="projects-grid">
             <!-- Мессенджер -->
-            <div class="project-card in-dev" style="cursor: default;">
+            <div class="project-card in-dev">
                 <div class="project-icon">💬</div>
                 <div class="project-name">Мессенджер Studio N</div>
                 <div class="project-desc">Защищённый P2P-мессенджер с шифрованием. Без центральных серверов, только приватность.</div>
@@ -492,7 +760,7 @@
             </div>
 
             <!-- Браузер -->
-            <div class="project-card in-dev" style="cursor: default;">
+            <div class="project-card in-dev">
                 <div class="project-icon">🌐</div>
                 <div class="project-name">Браузер N</div>
                 <div class="project-desc">Минималистичный браузер с интеграцией P2P-сервисов и встроенными инструментами разработчика.</div>
@@ -504,7 +772,7 @@
             </div>
 
             <!-- Игры и фильмы -->
-            <div class="project-card in-dev" style="cursor: default; background: rgba(19, 22, 28, 0.8);">
+            <div class="project-card in-dev">
                 <div class="project-icon">🎮🎬</div>
                 <div class="project-name">Игры и фильмы</div>
                 <div class="project-desc">Экспериментальные игровые проекты и короткометражные фильмы студии.</div>
@@ -516,7 +784,7 @@
         </div>
 
         <!-- БЛОК ПРО ТЕБЯ -->
-        <div class="master-section">
+        <div class="master-section" id="about">
             <div>
                 <div class="master-title">Один человек</div>
                 <div class="master-desc" style="margin-top: 0.5rem;">
@@ -539,8 +807,121 @@
             </div>
         </div>
 
+        <!-- Контактная секция с Telegram и Rutube -->
+        <div class="contact-section" id="contact">
+            <h3 class="contact-title">📬 Связаться со мной</h3>
+            <div class="contact-info">
+                <div class="contact-text">
+                    <p style="margin-bottom: 1rem;">По всем вопросам сотрудничества, предложениям и идеям:</p>
+                    <div class="contact-email">
+                        <a href="mailto:Studio.n.2025@yandex.com">📧 Studio.n.2025@yandex.com</a>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #8a99aa;">
+                        *Для съёмочных проектов — пишите, обсудим детали и вашу роль в команде.
+                    </p>
+                </div>
+                
+                <!-- Каналы: Telegram и Rutube -->
+                <div class="channels-section">
+                    <div class="channels-title">
+                        <span>📢</span> Наши каналы
+                    </div>
+                    <div class="channel-links">
+                        <a href="https://t.me/studion2025" target="_blank" rel="noopener" class="channel-link telegram">
+                            <span class="channel-icon">📱</span>
+                            <span>Telegram-канал</span>
+                            <span style="font-size: 0.8rem;">→</span>
+                        </a>
+                        <a href="https://rutube.ru/channel/60173158/" target="_blank" rel="noopener" class="channel-link rutube">
+                            <span class="channel-icon">🎬</span>
+                            <span>Rutube-канал</span>
+                            <span style="font-size: 0.8rem;">→</span>
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.8rem; color: #6a7a8a;">
+                        Подписывайтесь, чтобы следить за новостями, анонсами и новыми проектами!
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- О студии -->
         <div style="background: rgba(16, 22, 30, 0.8); backdrop-filter: blur(5px); border-radius: 30px; padding: 2rem; margin-top: 2rem; border: 1px solid #27303d; animation: fadeInUp 1.2s ease-out;">
             <h3 style="font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; color: #fff;">Как устроена Studio N</h3>
             <p style="color: #b0c0d0; max-width: 700px;">
-                <strong>Всё держится на одном человеке.</strong> Я сам выбираю людей для съёмочной группы под каждый проект — они меняются в 
+                <strong>Всё держится на одном человеке.</strong> Я сам выбираю людей для съёмочной группы под каждый проект — они меняются в зависимости от задач. В разработке же я работаю полностью самостоятельно: от идеи до реализации. Такой подход позволяет сохранять полный контроль над качеством и видением каждого продукта.
+            </p>
+            <p style="color: #b0c0d0; margin-top: 1rem;">
+                🚀 <strong>Миссия:</strong> Создавать уникальные, безопасные и открытые цифровые продукты, а также качественный видеоконтент, который находит отклик у зрителей.
+            </p>
+            <p style="color: #ffb347; margin-top: 1rem; font-size: 0.9rem;">
+                ⚠️ FulloChat и FreeTube временно недоступны — ведутся технические работы. Скоро всё заработает!
+            </p>
+        </div>
+
+        <!-- Футер -->
+        <div class="footer">
+            <p>© 2026 Studio N — фильмы, игры, приложения</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                Сделано с ❤️ одним человеком для всего мира
+            </p>
+        </div>
+    </div>
+
+    <!-- Кнопка наверх -->
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
+
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Кнопка наверх
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Добавляем анимацию при скролле
+        const cards = document.querySelectorAll('.project-card, .master-section, .contact-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
