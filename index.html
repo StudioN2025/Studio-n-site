@@ -12,7 +12,6 @@
     <link rel="apple-touch-icon" href="studionicon.png">
     
     <style>
-        /* Стиль в стиле "цифровой минимализм" — отсылка к интерфейсам приложений студии */
         * {
             margin: 0;
             padding: 0;
@@ -27,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* 🔮 АНИМАЦИИ И ДЕКОР */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -63,17 +61,6 @@
             }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Фон с эффектом звёзд */
         body::before {
             content: '';
             position: fixed;
@@ -105,7 +92,6 @@
             padding: 2rem 1.5rem;
         }
 
-        /* Навигация */
         .nav {
             display: flex;
             justify-content: center;
@@ -129,7 +115,6 @@
             border-bottom-color: #4f9eff;
         }
 
-        /* шапка */
         .header {
             text-align: center;
             margin-bottom: 4rem;
@@ -150,7 +135,6 @@
             animation: borderGlow 3s infinite;
         }
 
-        /* Блок с логотипом и иконкой */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -196,7 +180,6 @@
             margin: 1rem auto 0;
         }
 
-        /* карточки проектов */
         .section-title {
             font-size: 2rem;
             font-weight: 600;
@@ -210,7 +193,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.8rem;
             margin-bottom: 2rem;
         }
@@ -238,7 +221,6 @@
         .project-card:nth-child(3) { animation-delay: 0.2s; }
         .project-card:nth-child(4) { animation-delay: 0.25s; }
         .project-card:nth-child(5) { animation-delay: 0.3s; }
-        .project-card:nth-child(6) { animation-delay: 0.35s; }
 
         .project-card::before {
             content: '';
@@ -333,41 +315,50 @@
             color: #8ed6ff;
         }
 
+        .badge-new {
+            background: #2a6b3a;
+            color: #a0ffa0;
+            animation: glowPulse 2s infinite;
+        }
+
         .badge-temporary {
             background: #8b5a2b;
             color: #ffd966;
         }
 
-        .badge-offline {
-            background: #6b2e2e;
-            color: #ff9999;
+        .release-note {
+            background: rgba(79, 158, 255, 0.1);
+            border-left: 3px solid #4f9eff;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #b0c4de;
         }
 
-        .in-dev {
-            opacity: 0.9;
-            background: rgba(42, 36, 32, 0.8);
-            border: 1px dashed #6b5a4c;
-            cursor: default;
-        }
-
-        .in-dev .badge {
-            background: #443e38;
-            color: #f0c9a0;
-        }
-
-        .temporarily-offline {
-            opacity: 0.85;
-            background: rgba(30, 25, 35, 0.8);
-            border: 1px solid #8b5a2b;
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #4f9eff, #2c6bb0);
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
             cursor: pointer;
+            text-decoration: none;
+            color: white;
+            width: fit-content;
         }
 
-        .temporarily-offline .badge {
-            background: #8b5a2b;
-            color: #ffd966;
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(79, 158, 255, 0.6);
         }
 
-        /* мастер-секция */
         .master-section {
             background: rgba(27, 33, 41, 0.8);
             backdrop-filter: blur(5px);
@@ -437,7 +428,6 @@
             animation: glowPulse 3s infinite;
         }
 
-        /* Контактная секция */
         .contact-section {
             background: rgba(16, 22, 30, 0.8);
             backdrop-filter: blur(5px);
@@ -488,7 +478,6 @@
             text-shadow: 0 0 10px rgba(79, 158, 255, 0.5);
         }
 
-        /* Каналы */
         .channels-section {
             background: rgba(16, 22, 30, 0.6);
             border-radius: 20px;
@@ -547,7 +536,6 @@
             font-size: 1.5rem;
         }
 
-        /* Футер */
         .footer {
             margin-top: 5rem;
             text-align: center;
@@ -556,19 +544,6 @@
             color: #7a8595;
             font-size: 0.95rem;
             animation: fadeInUp 1s ease-out;
-        }
-
-        .footer a {
-            color: #b0cbff;
-            text-decoration: none;
-            border-bottom: 1px dotted #4a5e7a;
-            transition: all 0.2s;
-        }
-
-        .footer a:hover {
-            color: white;
-            border-bottom-color: #4f9eff;
-            text-shadow: 0 0 8px rgba(79, 158, 255, 0.5);
         }
 
         .profile-links {
@@ -602,10 +577,6 @@
             animation: glowPulse 2s infinite;
         }
 
-        .profile-link:first-child { animation-delay: 0s; }
-        .profile-link:last-child { animation-delay: 0.5s; }
-
-        /* Кнопка наверх */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
@@ -638,76 +609,32 @@
             background: #6badff;
         }
 
-        /* Адаптивность */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .studio-icon {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .logo-wrapper {
-                gap: 0.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .master-title {
-                font-size: 1.8rem;
-            }
-            
-            .master-desc {
-                font-size: 1rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .profile-link {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-            }
-            
-            .channel-links {
-                flex-direction: column;
-            }
-            
-            .channel-link {
-                justify-content: center;
-            }
+            .container { padding: 1rem; }
+            .logo { font-size: 2.5rem; }
+            .studio-icon { width: 60px; height: 60px; }
+            .logo-wrapper { gap: 0.5rem; }
+            .section-title { font-size: 1.5rem; }
+            .master-title { font-size: 1.8rem; }
+            .master-desc { font-size: 1rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .profile-links { flex-direction: column; align-items: center; }
+            .profile-link { width: 100%; justify-content: center; }
+            .contact-info { flex-direction: column; }
+            .channel-links { flex-direction: column; }
+            .channel-link { justify-content: center; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Навигация -->
         <div class="nav">
             <a href="#projects">Проекты</a>
-            <a href="#development">В разработке</a>
+            <a href="#messenger">Мессенджер</a>
             <a href="#about">О студии</a>
             <a href="#contact">Контакты</a>
         </div>
 
-        <!-- Шапка студии 2026 с иконкой -->
         <div class="header" id="top">
             <div class="logo-wrapper">
                 <img src="studionicon.png" alt="Studio N Icon" class="studio-icon" onerror="this.style.display='none'">
@@ -718,7 +645,6 @@
                 <span style="font-size: 1rem; color: #b0c4de;">(съёмочная команда формируется под проект / разработка — соло)</span>
             </p>
             
-            <!-- ССЫЛКИ НА ПРОФИЛИ В ШАПКЕ -->
             <div class="profile-links">
                 <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="profile-link">
                     <span>⎔</span> Itch.io профиль
@@ -729,104 +655,88 @@
             </div>
         </div>
 
+        <!-- НОВЫЙ РАЗДЕЛ: P2P МЕССЕНДЖЕР (РЕЛИЗ!) -->
+        <h2 class="section-title" id="messenger">💬 P2P Мессенджер — РЕЛИЗ 0.1</h2>
+        <div class="projects-grid">
+            <div class="project-card" style="border: 2px solid #4f9eff; background: rgba(30, 40, 55, 0.9);">
+                <div class="project-icon">💬</div>
+                <div class="project-name">
+                    Мессенджер Studio N
+                    <span class="badge badge-new">🔥 v0.1 вышел!</span>
+                </div>
+                <div class="project-desc">
+                    Полностью децентрализованный P2P-мессенджер с шифрованием. 
+                    <strong>Локальная версия</strong> — вы запускаете сервер на своём ПК и подключаетесь к друзьям напрямую.
+                </div>
+                <div class="project-meta">
+                    <span class="badge badge-p2p">🔒 E2EE</span>
+                    <span class="badge">P2P</span>
+                    <span class="badge">🐍 Python</span>
+                    <span class="badge badge-new">✅ релиз 25.03.2026</span>
+                </div>
+                <div class="release-note">
+                    📡 <strong>Как работает:</strong> Вы скачиваете, запускаете сервер на своём ПК, даёте друзьям ваш IP — они подключаются. Вся история и файлы хранятся только у вас. 
+                    <span style="display: block; margin-top: 8px;">🔧 Сервер открываете вы, управление полностью ваше.</span>
+                </div>
+                <a href="https://github.com/StudioN2025/p2p-messeger/releases/tag/0.1" target="_blank" class="download-btn">
+                    ⬇️ Скачать релиз v0.1 (GitHub)
+                </a>
+                <div style="margin-top: 0.8rem; font-size: 0.75rem; color: #8aa9cc;">
+                    *Для работы нужен Python 3.8+, инструкция внутри архива
+                </div>
+            </div>
+        </div>
+
         <!-- Существующие проекты -->
         <h2 class="section-title" id="projects">🎯 Актуальные проекты</h2>
         <div class="projects-grid">
-            <!-- 1. FulloChat v2 - ВРЕМЕННО НЕ РАБОТАЕТ -->
             <a href="https://studion2025.github.io/fullo-chat/" target="_blank" rel="noopener" class="project-card temporarily-offline">
                 <div class="project-icon">📹</div>
                 <div class="project-name">
                     FulloChat v2.0
-                    <span class="badge badge-temporary" style="background: #8b5a2b; font-size: 0.7rem;">⚠️ временно</span>
+                    <span class="badge badge-temporary">⚠️ временно</span>
                 </div>
-                <div class="project-desc">P2P аудио/видео чат со сквозным шифрованием (E2EE). Полностью децентрализован. Разработано для кружка информатики.</div>
+                <div class="project-desc">P2P аудио/видео чат со сквозным шифрованием (E2EE). Полностью децентрализован.</div>
                 <div class="project-meta">
                     <span class="badge badge-p2p">🔒 E2EE</span>
                     <span class="badge">WebRTC</span>
-                    <span class="badge badge-temporary">⏳ скоро вернётся</span>
                 </div>
-                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#ffb347;">⚠️ Временно недоступен — ведутся технические работы</div>
+                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#ffb347;">⚠️ Временно недоступен</div>
             </a>
 
-            <!-- 2. FreeTube - ВРЕМЕННО НЕ РАБОТАЕТ -->
             <a href="https://studion2025.github.io/FreeTube/" target="_blank" rel="noopener" class="project-card temporarily-offline">
                 <div class="project-icon">🎬</div>
                 <div class="project-name">
                     FreeTube
-                    <span class="badge badge-temporary" style="background: #8b5a2b; font-size: 0.7rem;">⚠️ временно</span>
+                    <span class="badge badge-temporary">⚠️ временно</span>
                 </div>
-                <div class="project-desc">Свободная видео-платформа. Загружай, смотри, ищи. Простой и открытый видеохостинг.</div>
+                <div class="project-desc">Свободная видео-платформа. Загружай, смотри, ищи.</div>
                 <div class="project-meta">
                     <span class="badge">видео</span>
                     <span class="badge badge-temporary">🔧 обновление</span>
-                    <span class="badge">открытый</span>
                 </div>
-                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#ffb347;">⚠️ Временно недоступен — идёт техническое обновление</div>
+                <div style="margin-top: 0.5rem; font-size:0.85rem; color:#ffb347;">⚠️ Временно недоступен</div>
             </a>
 
-            <!-- 3. Кодировщик base64 - РАБОТАЕТ -->
             <a href="https://studion2025.github.io/video-and-photo-codet-to-base64/" target="_blank" rel="noopener" class="project-card">
                 <div class="project-icon">🔢</div>
                 <div class="project-name">Base64 кодировщик</div>
-                <div class="project-desc">Конвертер видео и фото в Base64 для разработчиков. Быстрое кодирование.</div>
+                <div class="project-desc">Конвертер видео и фото в Base64 для разработчиков.</div>
                 <div class="project-meta">
                     <span class="badge">инструмент</span>
-                    <span class="badge">🔧 dev</span>
                     <span class="badge" style="background: #2a6b3a;">✅ работает</span>
                 </div>
             </a>
 
-            <!-- 4. Ссылка на itch.io - РАБОТАЕТ -->
             <a href="https://itch.io/profile/studio-n" target="_blank" rel="noopener" class="project-card">
                 <div class="project-icon">📦</div>
                 <div class="project-name">Все проекты на itch</div>
-                <div class="project-desc">Страница Studio N на Itch.io. Следите за обновлениями и новыми релизами.</div>
+                <div class="project-desc">Страница Studio N на Itch.io.</div>
                 <div class="project-meta">
                     <span class="badge">itch.io</span>
-                    <span class="badge">сообщество</span>
                     <span class="badge" style="background: #2a6b3a;">✅ работает</span>
                 </div>
             </a>
-        </div>
-
-        <!-- Проекты в разработке 2026-2027 -->
-        <h2 class="section-title" id="development">⚙️ В разработке <span style="font-size: 1.2rem; color: #8ed6ff;">2026–2027</span></h2>
-        <div class="projects-grid">
-            <!-- Мессенджер -->
-            <div class="project-card in-dev">
-                <div class="project-icon">💬</div>
-                <div class="project-name">Мессенджер Studio N</div>
-                <div class="project-desc">Защищённый P2P-мессенджер с шифрованием. Без центральных серверов, только приватность.</div>
-                <div class="project-meta">
-                    <span class="badge">🔐 E2EE</span>
-                    <span class="badge">P2P</span>
-                    <span class="badge">🧪 dev</span>
-                </div>
-                <div style="color: #bc9b7a; margin-top: 0.3rem;">⏳ релиз: 2026–2027</div>
-            </div>
-
-            <!-- Браузер -->
-            <div class="project-card in-dev">
-                <div class="project-icon">🌐</div>
-                <div class="project-name">Браузер N</div>
-                <div class="project-desc">Минималистичный браузер с интеграцией P2P-сервисов и встроенными инструментами разработчика.</div>
-                <div class="project-meta">
-                    <span class="badge">⚡ быстрый</span>
-                    <span class="badge">🧪 early stage</span>
-                </div>
-                <div style="color: #bc9b7a; margin-top: 0.3rem;">⏳ прототип: 2026</div>
-            </div>
-
-            <!-- Игры и фильмы -->
-            <div class="project-card in-dev">
-                <div class="project-icon">🎮🎬</div>
-                <div class="project-name">Игры и фильмы</div>
-                <div class="project-desc">Экспериментальные игровые проекты и короткометражные фильмы студии.</div>
-                <div class="project-meta">
-                    <span class="badge">геймдев</span>
-                    <span class="badge">кинопроизводство</span>
-                </div>
-            </div>
         </div>
 
         <!-- БЛОК ПРО ТЕБЯ -->
@@ -853,7 +763,7 @@
             </div>
         </div>
 
-        <!-- Контактная секция с Telegram и Rutube -->
+        <!-- Контактная секция -->
         <div class="contact-section" id="contact">
             <h3 class="contact-title">📬 Связаться со мной</h3>
             <div class="contact-info">
@@ -867,7 +777,6 @@
                     </p>
                 </div>
                 
-                <!-- Каналы: Telegram и Rutube -->
                 <div class="channels-section">
                     <div class="channels-title">
                         <span>📢</span> Наши каналы
@@ -876,12 +785,10 @@
                         <a href="https://t.me/studion2025" target="_blank" rel="noopener" class="channel-link telegram">
                             <span class="channel-icon">📱</span>
                             <span>Telegram-канал</span>
-                            <span style="font-size: 0.8rem;">→</span>
                         </a>
                         <a href="https://rutube.ru/channel/60173158/" target="_blank" rel="noopener" class="channel-link rutube">
                             <span class="channel-icon">🎬</span>
                             <span>Rutube-канал</span>
-                            <span style="font-size: 0.8rem;">→</span>
                         </a>
                     </div>
                     <p style="margin-top: 1rem; font-size: 0.8rem; color: #6a7a8a;">
@@ -892,7 +799,7 @@
         </div>
 
         <!-- О студии -->
-        <div style="background: rgba(16, 22, 30, 0.8); backdrop-filter: blur(5px); border-radius: 30px; padding: 2rem; margin-top: 2rem; border: 1px solid #27303d; animation: fadeInUp 1.2s ease-out;">
+        <div style="background: rgba(16, 22, 30, 0.8); backdrop-filter: blur(5px); border-radius: 30px; padding: 2rem; margin-top: 2rem; border: 1px solid #27303d;">
             <h3 style="font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; color: #fff;">Как устроена Studio N</h3>
             <p style="color: #b0c0d0; max-width: 700px;">
                 <strong>Всё держится на одном человеке.</strong> Я сам выбираю людей для съёмочной группы под каждый проект — они меняются в зависимости от задач. В разработке же я работаю полностью самостоятельно: от идеи до реализации. Такой подход позволяет сохранять полный контроль над качеством и видением каждого продукта.
@@ -900,58 +807,36 @@
             <p style="color: #b0c0d0; margin-top: 1rem;">
                 🚀 <strong>Миссия:</strong> Создавать уникальные, безопасные и открытые цифровые продукты, а также качественный видеоконтент, который находит отклик у зрителей.
             </p>
-            <p style="color: #ffb347; margin-top: 1rem; font-size: 0.9rem;">
-                ⚠️ FulloChat и FreeTube временно недоступны — ведутся технические работы. Скоро всё заработает!
-            </p>
         </div>
 
-        <!-- Футер -->
         <div class="footer">
             <p>© 2026 Studio N — фильмы, игры, приложения</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-                Сделано с ❤️ одним человеком для всего мира
-            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Сделано с ❤️ одним человеком для всего мира</p>
         </div>
     </div>
 
-    <!-- Кнопка наверх -->
     <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
 
     <script>
-        // Плавная прокрутка для навигации
         document.querySelectorAll('.nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Кнопка наверх
         const scrollBtn = document.getElementById('scrollTopBtn');
-        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
+            scrollBtn.classList.toggle('visible', window.scrollY > 300);
         });
-        
         scrollBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Добавляем анимацию при скролле
         const cards = document.querySelectorAll('.project-card, .master-section, .contact-section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
